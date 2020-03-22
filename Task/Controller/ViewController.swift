@@ -49,9 +49,9 @@ class ViewController: UIViewController {
     {
 
         var myFiles: [String] = []
-        let storageRef = Storage.storage().reference().child("files").child("\(fileTitle).txt")
+        let storageRef = Storage.storage().reference().child("files").child("\(textFile!.code).txt")
 
-            DBManager.db2.whereField("code", isEqualTo:  passedCode!).getDocuments{ (snapShot, error) in
+        DBManager.db2.whereField("code", isEqualTo:  textFile!.code).getDocuments{ (snapShot, error) in
             if let e = error
             {
                 print(e.localizedDescription)
@@ -70,14 +70,14 @@ class ViewController: UIViewController {
                 if myFiles.contains(DBManager.user)
                 {
                     
-                    DBManager.db2.whereField("title", isEqualTo:  fileTitle).addSnapshotListener{ (snapShot, error) in
+                    DBManager.db2.whereField("code", isEqualTo:  self.textFile!.code).addSnapshotListener{ (snapShot, error) in
                         if let e = error
                         {
                             print(e.localizedDescription)
                         }
                         else
                         {
-                            let storageRef = Storage.storage().reference().child("files").child(self.passedCode!)
+                            let storageRef = Storage.storage().reference().child("files").child("\(self.textFile!.code).txt")
                             storageRef.getData(maxSize: 1 * 1024 * 1024) { data, error in
                               if let e = error {
                                 print(e.localizedDescription)
@@ -97,12 +97,12 @@ class ViewController: UIViewController {
                 else
                 {
                     myFiles.append(DBManager.user)
-                    DBManager.db2.document(fileTitle).updateData(["users":myFiles]) { err in
+                    DBManager.db2.document(self.textFile!.code).updateData(["users":myFiles]) { err in
                         if let err = err {
                             print("Error writing document: \(err)")
                         } else {
                             print("Document successfully written!")
-                            let test = ""//self.textView.text!
+                            let test = self.textView.text!
                             let uploadTask = storageRef.putData(Data(test.utf8), metadata: nil) { (metadata, error) in
                                 if let e = error{
                                     print("Failed To Store File Due To The Error:- \(e)")
@@ -140,15 +140,18 @@ extension ViewController: UITextViewDelegate{
     func textViewDidChange(_ textView: UITextView)
     {
         //DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-        
-            let storageRef = DBManager.storage.child(self.passedCode!)
+        if textFile?.code == nil
+        {
+            
+        }
+        let storageRef = DBManager.storage.child("\(self.textFile!.code).txt")
             let test = self.textView.text!
             storageRef.putData(Data(test.utf8), metadata: nil) { (metadata, error) in
                 if let e = error{
                     print("Failed To Store File Due To The Error:- \(e)")
                     return
                 }
-                DBManager.db2.document(self.passedCode!).updateData(["timeStamp": Date().timeIntervalSince1970]){ error in
+                DBManager.db2.document(self.textFile!.code).updateData(["timeStamp": Date().timeIntervalSince1970]){ error in
                 if (error != nil) {return}
                 }
              print("Updated")

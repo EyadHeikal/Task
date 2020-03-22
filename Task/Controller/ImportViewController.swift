@@ -13,7 +13,7 @@ import UIKit
 class ImportViewController: UIViewController {
     
     @IBOutlet weak var codeTextField: UITextField!
-    var textFile: TextFile?
+    //var textFile: TextFile?
 
     @IBAction func importAction(_ sender: Any) {
         if codeTextField.text != nil
@@ -21,7 +21,7 @@ class ImportViewController: UIViewController {
             
             let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditingVC") as? ViewController
             nextViewController!.create = false
-            nextViewController!.textFile = textFile
+            nextViewController!.textFile = TextFile(title: "", code: codeTextField.text!, users: [DBManager.user])
             nextViewController!.passedCode = codeTextField.text
             self.navigationController?.pushViewController(nextViewController!, animated: true)
             
