@@ -139,8 +139,8 @@ extension ViewController: UITextViewDelegate{
     
     func textViewDidChange(_ textView: UITextView)
     {
-        //DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-        if textFile?.code == nil
+        DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+            if self.textFile?.code == nil
         {
             
         }
@@ -157,7 +157,7 @@ extension ViewController: UITextViewDelegate{
              print("Updated")
                 
             }
-      //  }
+        }
         
 
     }

@@ -13,14 +13,9 @@ import UIKit
 
 class FilesViewController: UIViewController {
 
-    var titlesArray: [String] = []
-    var codesArray: [String] = []
-    //let user = (Auth.auth().currentUser?.email)! as String
-
     @IBOutlet weak var filesTableView: UITableView!
     
-    @IBAction func moreButton(_ sender: Any)
-    {
+    @IBAction func moreButton(_ sender: Any) {
         performSegue(withIdentifier: "MoreSegue", sender: nil)
     }
     
@@ -38,24 +33,29 @@ class FilesViewController: UIViewController {
         filesTableView.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.168627451, blue: 0.2039215686, alpha: 1)
         filesTableView.separatorColor = #colorLiteral(red: 0.1219933929, green: 0.1276528626, blue: 0.1540242146, alpha: 1)
         
-        DBManager.db2.whereField("users", arrayContains: DBManager.shared.getCurrentUser()).addSnapshotListener{ (snapShot, error) in
-            if let e = error
-            {
-                print(e.localizedDescription)
-            }
-            else
-            {
-                let documents = snapShot!.documents
-                self.titlesArray = []
-                for doc in documents
-                {
-                    let data = doc.data()
-                    self.titlesArray.append(data["title"] as! String)
-                    self.codesArray.append(data["code"] as! String)
-                }
-                DispatchQueue.main.async {
-                    self.filesTableView.reloadData()
-                }
+//        DBManager.db2.whereField("users", arrayContains: DBManager.shared.getCurrentUser()).addSnapshotListener{ (snapShot, error) in
+//            if let e = error
+//            {
+//                print(e.localizedDescription)
+//            }
+//            else
+//            {
+//                let documents = snapShot!.documents
+//                self.titlesArray = []
+//                for doc in documents
+//                {
+//                    let data = doc.data()
+//                    self.titlesArray.append(data["title"] as! String)
+//                    self.codesArray.append(data["code"] as! String)
+//                }
+//                DispatchQueue.main.async {
+//                    self.filesTableView.reloadData()
+//                }
+//            }
+//        }
+        FDBManager.shared.getData(){
+            DispatchQueue.main.async {
+                self.filesTableView.reloadData()
             }
         }
     }
@@ -111,7 +111,7 @@ class FilesViewController: UIViewController {
 extension FilesViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return titlesArray.count
+        return FDBManager.shared.titlesArray.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -119,18 +119,18 @@ extension FilesViewController: UITableViewDataSource, UITableViewDelegate {
         cell.textLabel?.font = UIFont(name: "menlo", size: 15)
         cell.textLabel?.textColor = #colorLiteral(red: 0.01369840626, green: 0.5765583485, blue: 0.6624469439, alpha: 1)
         cell.contentView.backgroundColor = #colorLiteral(red: 0.1607843137, green: 0.168627451, blue: 0.2039215686, alpha: 1)
-        cell.textLabel?.text = "\(titlesArray[indexPath.row]) #Code:\(codesArray[indexPath.row])"
+        cell.textLabel?.text = "\(FDBManager.shared.titlesArray[indexPath.row]) #Code:\(FDBManager.shared.codesArray[indexPath.row])"
         
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         
-        let textFile = TextFile(title: titlesArray[indexPath.row], code: codesArray[indexPath.row], users: [DBManager.user])
+        let textFile = TextFile(title: FDBManager.shared.titlesArray[indexPath.row], code: FDBManager.shared.codesArray[indexPath.row], users: [DBManager.user])
         let nextViewController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "EditingVC") as? ViewController
         nextViewController!.create = false
         nextViewController!.textFile = textFile
-        nextViewController!.passedCode = codesArray[indexPath.row]
+        nextViewController!.passedCode = FDBManager.shared.codesArray[indexPath.row]
         self.navigationController?.pushViewController(nextViewController!, animated: true)
     }
     

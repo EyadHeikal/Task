@@ -8,13 +8,11 @@
 
 import Foundation
 
-import Foundation
-
-
-struct TextFile//: Codable
+struct TextFile: Hashable//: Codable
 {
     let title: String
     let code :String    //= String(Int.random(in: 0..<999999999))
     let users: [String]
     let timeStamp = String(Date().timeIntervalSince1970)
 }
+
