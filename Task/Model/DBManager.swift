@@ -284,7 +284,7 @@ class DBManager {
     {
         DBManager.db2.document(file.code).setData([
             "title": file.title,
-            "timeStamp": file.timeStamp,
+            Constants.time : file.timeStamp,
             "users": file.users,
             "code": file.code
         ])

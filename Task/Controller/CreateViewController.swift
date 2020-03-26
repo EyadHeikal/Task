@@ -17,6 +17,7 @@ class CreateViewController: UIViewController {
     var textFile: TextFile?
     
     @IBAction func createFileButton(_ sender: Any) {
+        
         if fileNameTextField != nil || CodeTextField != nil
         {
             textFile = TextFile(title: fileNameTextField.text!, code: CodeTextField.text!, users: [DBManager.user])
@@ -25,7 +26,6 @@ class CreateViewController: UIViewController {
             nextViewController!.create = true
             nextViewController!.textFile = textFile
             self.navigationController?.pushViewController(nextViewController!, animated: true)
-            
         }
         
     }

@@ -26,7 +26,7 @@ class ViewController: UIViewController {
         db = Firestore.firestore()
         super.viewDidLoad()
         textView.delegate = self
-        
+        textView.text = "nil"
         //DBManager.shared.saveFile(file: textFile!,text: textView.text!)
         
         if create == true
@@ -35,8 +35,12 @@ class ViewController: UIViewController {
         }
         else
         {
-            
-            searchByCode(fileTitle: "eyad", text: textView!.text)
+            ImportDBM.shared.importFile(fileCode: textFile!.code,onSuccess: (
+                DispatchQueue.main.async {
+                    self.textView!.text = String(decoding: ImportDBM.shared.fileText, as: UTF8.self)
+                }
+            ))
+            //searchByCode(fileTitle: "eyad", text: textView!.text)
             //DBManager.shared.searchByCode(fileTitle: fileTitle!, text: textView.text)
             
         }

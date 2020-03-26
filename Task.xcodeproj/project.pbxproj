@@ -26,6 +26,7 @@
 		86B5FE7D2421128000F68BE4 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5FE7C2421128000F68BE4 /* Constants.swift */; };
 		86B5FE7F242117DA00F68BE4 /* TextFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86B5FE7E242117DA00F68BE4 /* TextFile.swift */; };
 		86C4EA1C242B7606007A4474 /* FBDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4EA1B242B7606007A4474 /* FBDManager.swift */; };
+		86C4EA1E242B915D007A4474 /* ImportDBM.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86C4EA1D242B915D007A4474 /* ImportDBM.swift */; };
 		86D776492427A88400BC7276 /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D776472427A88400BC7276 /* TableViewCell.swift */; };
 		86D7764A2427A88400BC7276 /* TableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 86D776482427A88400BC7276 /* TableViewCell.xib */; };
 		86D7764C2427AE8300BC7276 /* MyUITableViewDiffableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 86D7764B2427AE8300BC7276 /* MyUITableViewDiffableDataSource.swift */; };
@@ -56,6 +57,7 @@
 		86B5FE7C2421128000F68BE4 /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		86B5FE7E242117DA00F68BE4 /* TextFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFile.swift; sourceTree = "<group>"; };
 		86C4EA1B242B7606007A4474 /* FBDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FBDManager.swift; sourceTree = "<group>"; };
+		86C4EA1D242B915D007A4474 /* ImportDBM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportDBM.swift; sourceTree = "<group>"; };
 		86D776472427A88400BC7276 /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		86D776482427A88400BC7276 /* TableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewCell.xib; sourceTree = "<group>"; };
 		86D7764B2427AE8300BC7276 /* MyUITableViewDiffableDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyUITableViewDiffableDataSource.swift; sourceTree = "<group>"; };
@@ -162,6 +164,7 @@
 				86B5FE7E242117DA00F68BE4 /* TextFile.swift */,
 				86B0413E24238A6C002A98E6 /* DBManager.swift */,
 				86C4EA1B242B7606007A4474 /* FBDManager.swift */,
+				86C4EA1D242B915D007A4474 /* ImportDBM.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				86487F0B24219DE700476727 /* SignInViewController.swift in Sources */,
 				86B5FE7D2421128000F68BE4 /* Constants.swift in Sources */,
 				86932A4F2424AD8500BAB619 /* ChooseViewController.swift in Sources */,
+				86C4EA1E242B915D007A4474 /* ImportDBM.swift in Sources */,
 				86F6320C2423B1D100D2F26F /* SignUpViewController.swift in Sources */,
 				866463002420DF0400EEB6C7 /* AppDelegate.swift in Sources */,
 				866463022420DF0400EEB6C7 /* SceneDelegate.swift in Sources */,
