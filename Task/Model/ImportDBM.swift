@@ -59,13 +59,13 @@ class ImportDBM {
                 print("Error writing document: \(e)")
                 return
             }
-            self.getFile(fileCode: fileCode,onSuccess: onSuccess())
+            self.listen(fileCode: fileCode,onSuccess: onSuccess())
         }
     }
     
     ///////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
     
-    func dun(fileCode: String, onSuccess: @escaping @autoclosure ()->()) {
+    func listen(fileCode: String, onSuccess: @escaping @autoclosure ()->()) {
         
         ImportDBM.db2.whereField("code", isEqualTo:  fileCode).addSnapshotListener{
             (snapShot, error) in
@@ -98,8 +98,9 @@ class ImportDBM {
                     ImportDBM.shared.allAllowed += userArray
                 }
                 if ImportDBM.shared.allAllowed.contains(ImportDBM.user) {
-                    self.getFile(fileCode: fileCode, onSuccess: onSuccess())
+                    self.listen(fileCode: fileCode, onSuccess: onSuccess())
                 } else {
+                    ImportDBM.shared.allAllowed.append(ImportDBM.user)
                     self.giveAccessTo(fileCode: fileCode, onSuccess: onSuccess())
                 }
             }

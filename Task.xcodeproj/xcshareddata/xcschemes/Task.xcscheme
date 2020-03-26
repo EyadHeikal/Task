@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "866462FB2420DF0400EEB6C7"
-               BuildableName = "Task.app"
+               BuildableName = "Notes.app"
                BlueprintName = "Task"
                ReferencedContainer = "container:Task.xcodeproj">
             </BuildableReference>
@@ -45,7 +45,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "866462FB2420DF0400EEB6C7"
-            BuildableName = "Task.app"
+            BuildableName = "Notes.app"
             BlueprintName = "Task"
             ReferencedContainer = "container:Task.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "866462FB2420DF0400EEB6C7"
-            BuildableName = "Task.app"
+            BuildableName = "Notes.app"
             BlueprintName = "Task"
             ReferencedContainer = "container:Task.xcodeproj">
          </BuildableReference>

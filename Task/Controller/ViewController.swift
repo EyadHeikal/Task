@@ -144,23 +144,19 @@ extension ViewController: UITextViewDelegate{
     func textViewDidChange(_ textView: UITextView)
     {
         DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
-            if self.textFile?.code == nil
-        {
-            
-        }
-        let storageRef = DBManager.storage.child("\(self.textFile!.code).txt")
-            let test = self.textView.text!
-            storageRef.putData(Data(test.utf8), metadata: nil) { (metadata, error) in
-                if let e = error{
-                    print("Failed To Store File Due To The Error:- \(e)")
-                    return
+            let storageRef = DBManager.storage.child("\(self.textFile!.code).txt")
+                let test = self.textView.text!
+                storageRef.putData(Data(test.utf8), metadata: nil) { (metadata, error) in
+                    if let e = error{
+                        print("Failed To Store File Due To The Error:- \(e)")
+                        return
+                    }
+                    DBManager.db2.document(self.textFile!.code).updateData(["timeStamp": Date().timeIntervalSince1970]){ error in
+                    if (error != nil) {return}
+                    }
+                 print("Updated")
+                    
                 }
-                DBManager.db2.document(self.textFile!.code).updateData(["timeStamp": Date().timeIntervalSince1970]){ error in
-                if (error != nil) {return}
-                }
-             print("Updated")
-                
-            }
         }
         
 

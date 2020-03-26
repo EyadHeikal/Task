@@ -292,7 +292,7 @@ class DBManager {
     
     func saveFile(file: TextFile,text: String)
     {
-        DBManager.storage.child(file.code).putData(Data(text.utf8), metadata: nil) { (metadata, error) in
+        DBManager.storage.child("\(file.code).txt").putData(Data(text.utf8), metadata: nil) { (metadata, error) in
             if let e = error{
                 print("Failed To Store File Due To The Error:- \(e.localizedDescription)")
                 return
